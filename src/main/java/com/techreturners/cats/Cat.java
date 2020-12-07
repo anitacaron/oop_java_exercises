@@ -2,35 +2,32 @@ package com.techreturners.cats;
 
 interface Cat {
 	public String eat();
-
+	
 	public boolean isAsleep();
-
-	public void wakeUp();
-
+	
 	public void goToSleep();
-
+	
 	public String getSetting();
-
+	
+	public void wakeUp();
+	
 	public float getAverageHeight();
 }
 
-class CatImp implements Cat {
+/* Abstract class for Cat */
+abstract class CatImp implements Cat {
 	private boolean isAsleep = false;
 	private float avgHeight;
 	private String setting;
 
-	public void setAvgHeight(float avgHeight) {
+	public float getAverageHeight() {
+		return avgHeight;
+	}
+
+	public void setAverageHeight(float avgHeight) {
 		this.avgHeight = avgHeight;
 	}
-
-	public boolean isAsleep() {
-		return isAsleep;
-	}
-
-	public void setAsleep(boolean isAsleep) {
-		this.isAsleep = isAsleep;
-	}
-
+	
 	public String getSetting() {
 		return setting;
 	}
@@ -39,60 +36,58 @@ class CatImp implements Cat {
 		this.setting = setting;
 	}
 
+	public boolean isAsleep() {
+		return isAsleep;
+	}
+	
 	public void wakeUp() {
-		this.isAsleep = false;
+		isAsleep = false;
 	}
 
 	public void goToSleep() {
-		this.isAsleep = true;
-
+		isAsleep = true;
 	}
 
-	@Override
-	public String eat() {
-		return null;
-	}
-
-	@Override
-	public float getAverageHeight() {
-		return avgHeight;
-	}
+	public abstract String eat();
 }
 
-
-/*Domestic*/
+/* Domestic Cat */
 class DomesticCat extends CatImp {
-	DomesticCat() {
-		super.setSetting("domestic");
-		super.setAvgHeight(23);
-	}
+	private static final String noise = "Purrrrrrr";
 
-	@Override
+	DomesticCat(){
+		this.setAverageHeight((float) 23);
+		this.setSetting("domestic");
+	}
+	
 	public String eat() {
-		return "Purrrrrrr";
+		return noise;
 	}
 }
 
+/* LionCat Cat */
 class LionCat extends CatImp {
-	LionCat() {
-		super.setSetting("wild");
-		super.setAvgHeight(1100);
-	}
+	private static final String noise = "Roar!!!!";
 
-	@Override
+	LionCat(){
+		this.setAverageHeight((float) 1100);
+		this.setSetting("wild");
+	}
+	
 	public String eat() {
-		return "Roar!!!!";
+		return noise;
 	}
 }
 
+/* Cheetah Cat */
 class CheetahCat extends CatImp {
-	CheetahCat() {
-		super.setSetting("wild");
-		super.setAvgHeight(3000);
-	}
+	private static final String noise = "Zzzzzzz";
 
-	@Override
+	CheetahCat(){
+		this.setAverageHeight((float) 200);
+		this.setSetting("wild");
+	}
 	public String eat() {
-		return "Zzzzzzz";
+		return noise;
 	}
 }
